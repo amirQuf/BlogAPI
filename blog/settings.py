@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # appps
     'web.apps.WebConfig',
+    'Api',
+    'users',
 ]
 
 MIDDLEWARE = [
