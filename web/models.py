@@ -6,7 +6,7 @@ class Category(models.Model):
     name = models.CharField(max_length = 200)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now = True)
-    Category = models.ForeignKey('self', on_delete=models.CASCADE)
+    Category = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
     description = models.TextField(blank=True,null=True)
     active = models.BooleanField(default=True)
     class Meta:
