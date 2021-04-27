@@ -6,7 +6,8 @@ class Category(models.Model):
     name = models.CharField(max_length = 200)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now = True)
-    Category = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
+    slug  = models.SlugField(unique=True,blank=True,null=True)
+    parent = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
     description = models.TextField(blank=True,null=True)
     active = models.BooleanField(default=True)
     class Meta:
@@ -22,9 +23,10 @@ class Post(models.Model):
     title = models.CharField(max_length = 200)
     thumbnail = models.ImageField(upload_to = 'post')
     description = models.TextField()
+    slug  = models.SlugField(unique = True ,blank=True,null=True)
     updated = models.DateTimeField(default = timezone.now)
     user = models.ForeignKey(User,  on_delete = models.CASCADE)
-    voice = models.FileField(upload_to='voice-post',blank=True,null=True,)
+    voice = models.FileField(upload_to = 'voice-post',blank=True,null=True,)
     created = models.DateTimeField(auto_now = True)
     categories = models.ManyToManyField(Category)
     likes = models.PositiveIntegerField(default = 0)
@@ -39,6 +41,7 @@ class Comment(models.Model):
     body = models.TextField()
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     post = models.ForeignKey(Post , on_delete=models.CASCADE)
+    parent = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now = True)
     def __str__(self):
         return f"{self.body}|{self.user.username}"
