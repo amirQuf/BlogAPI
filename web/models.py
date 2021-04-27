@@ -24,14 +24,15 @@ class Post(models.Model):
     description = models.TextField()
     updated = models.DateTimeField(default = timezone.now)
     user = models.ForeignKey(User,  on_delete = models.CASCADE)
-    voice = models.FileField(upload_to='voice-post',blank=True,null=True)
+    voice = models.FileField(upload_to='voice-post',blank=True,null=True,)
     created = models.DateTimeField(auto_now = True)
     categories = models.ManyToManyField(Category)
+    likes = models.PositiveIntegerField(default = 0)
     status = models.CharField(max_length = 1 , choices = STATUS_CHOICES)
     def __str__(self):
         return f"{self.title}|{self.user.username}"
     class Meta:
-        ordering = ('-updated',)
+        ordering = ('-updated','-created',)
   
 
 class Comment(models.Model):
@@ -43,8 +44,13 @@ class Comment(models.Model):
         return f"{self.body}|{self.user.username}"
     class Meta:
         ordering = ('-created',)
-        
 
 
-        
-
+class Like (models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now = True)
+    def __str__(self):
+       return f"{self.user.username}|{self.post.title}"
+    class Meta:
+        ordering = ('-created',)
