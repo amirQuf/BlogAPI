@@ -9,21 +9,22 @@ class ProfileSerializer(ModelSerializer):
 
 
 
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ("name" ,"user" ,"slug","parent","description", )
+
 
 
 #serializers for  web app 
 class PostSerializer(ModelSerializer):
+    categories = CategorySerializer(read_only = True , many = True)
     class Meta:
         model = Post
         fields = ("title" ,"thumbnail" ,"description","updated" ,"user" ,
             "voice" ,"created", "categories" ,"likes", "status" )
 
 
-
-class CategorySerializer(ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ("name" ,"user" ,"slug","parent","description", )
 
 
 class savepostSerializer(ModelSerializer):
