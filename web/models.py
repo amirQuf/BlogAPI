@@ -5,7 +5,7 @@ from django.utils import timezone
 class Category(models.Model):
     name = models.CharField(max_length = 200)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
     slug  = models.SlugField(unique=True,blank=True,null=True)
     parent = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
     description = models.TextField(blank=True,null=True)
@@ -14,6 +14,9 @@ class Category(models.Model):
         ordering = ('-created',)
     def __str__(self):
         return f"{self.name}|{self.user.username}"
+    def parent_name(self):
+        return self.parent.name
+
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -26,13 +29,14 @@ class Post(models.Model):
     slug  = models.SlugField(unique = True ,blank=True,null=True)
     updated = models.DateTimeField(default = timezone.now)
     user = models.ForeignKey(User,  on_delete = models.CASCADE)
-    voice = models.FileField(upload_to = 'voice-post',blank=True,null=True,)
-    created = models.DateTimeField(auto_now = True)
+    voice = models.FileField(upload_to = 'voice-post')
+    created = models.DateTimeField(auto_now_add = True)
     categories = models.ManyToManyField(Category)
     likes = models.PositiveIntegerField(default = 0)
     status = models.CharField(max_length = 1 , choices = STATUS_CHOICES)
     def __str__(self):
         return f"{self.title}|{self.user.username}"
+  
     class Meta:
         ordering = ('-updated','-created',)
   
@@ -42,7 +46,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     post = models.ForeignKey(Post , on_delete=models.CASCADE)
     parent = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
     def __str__(self):
         return f"{self.body}|{self.user.username}"
     class Meta:
@@ -51,9 +55,17 @@ class Comment(models.Model):
 
 class Like (models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    post = models.OneToOneField(Post,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now = True)
     def __str__(self):
        return f"{self.user.username}|{self.post.title}"
     class Meta:
         ordering = ('-created',)
+
+
+
+class SavePost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    saved_post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
+
