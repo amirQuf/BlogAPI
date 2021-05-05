@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from django.shortcuts import reverse
+
 class Category(models.Model):
     name = models.CharField(max_length = 200)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
@@ -14,10 +16,8 @@ class Category(models.Model):
         ordering = ('-created',)
     def __str__(self):
         return f"{self.name}|{self.user.username}"
-    def parent_name(self):
-        return self.parent.name
-
-
+    def get_absolute_url(self):
+        return f"/cat/{self.slug}"
 class Post(models.Model):
     STATUS_CHOICES = (
         ('D','draft'),
@@ -29,14 +29,16 @@ class Post(models.Model):
     slug  = models.SlugField(unique = True ,blank=True,null=True)
     updated = models.DateTimeField(default = timezone.now)
     user = models.ForeignKey(User,  on_delete = models.CASCADE)
-    voice = models.FileField(upload_to = 'voice-post')
+    voice = models.FileField(upload_to = 'voice-post',blank=True,null=True)
     created = models.DateTimeField(auto_now_add = True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category,)
     likes = models.PositiveIntegerField(default = 0)
     status = models.CharField(max_length = 1 , choices = STATUS_CHOICES)
     def __str__(self):
         return f"{self.title}|{self.user.username}"
-  
+    def get_absolute_url(self):
+        return f"/{self.user.username}/{self.slug}"
+    
     class Meta:
         ordering = ('-updated','-created',)
   
@@ -44,7 +46,7 @@ class Post(models.Model):
 class Comment(models.Model):
     body = models.TextField()
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-    post = models.ForeignKey(Post , on_delete=models.CASCADE)
+    post = models.ForeignKey(Post ,related_name='comments', on_delete=models.CASCADE)
     parent = models.ForeignKey('self',blank=True,null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add = True)
     def __str__(self):
@@ -54,8 +56,8 @@ class Comment(models.Model):
 
 
 class Like (models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.OneToOneField(Post,on_delete=models.CASCADE)
+    user = models.ForeignKey(User ,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,related_name= 'like',on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now = True)
     def __str__(self):
        return f"{self.user.username}|{self.post.title}"
@@ -68,4 +70,7 @@ class SavePost(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     saved_post = models.ForeignKey(Post,on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ('-time',)
+
 
