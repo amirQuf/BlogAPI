@@ -6,11 +6,24 @@ from users.models import Profile , Follower
 
 from django.contrib.auth.models import User
 
+
+
+
+
+
 class UserSerializer(ModelSerializer):
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'is_staff']
 
+
+class FollwerSerializer(ModelSerializer):
+    following = UserSerializer(many=True ,read_only=True)
+    user =UserSerializer()
+    class Meta:
+        model = Follower
+        fields = ['following' ,'user' ]
 
 
 

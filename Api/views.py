@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics  , viewsets
-from .serializers import (PostSerializer,CategorySerializer , savepostSerializer , ProfileSerializer , UserSerializer) 
-from  users.models import Profile
+from .serializers import (PostSerializer,CategorySerializer ,FollwerSerializer, savepostSerializer , ProfileSerializer , UserSerializer) 
+from  users.models import Profile ,Follower
 from web.models import Post ,Category ,SavePost , Comment
 from django.contrib.auth.models import User
 
@@ -29,3 +29,8 @@ class CatgoryList(generics.ListAPIView):
 class savedPostList(generics.ListCreateAPIView):
     queryset = SavePost.objects.all()
     serializer_class = savepostSerializer
+
+
+class FollowerList(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Follower.objects.all()
+    serializer_class = FollwerSerializer
