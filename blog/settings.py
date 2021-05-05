@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #3rd party apps
     'rest_framework',
+    'rest_framework.authtoken',
     # appps
     'web.apps.WebConfig',
     'Api.apps.ApiConfig',
@@ -131,3 +132,10 @@ STATIC_ROOT =BASE_DIR / 'static'
 MEDIA_ROOT =  BASE_DIR  / 'Media'
 
 MEDIA_URL = '/media/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ]
+}
