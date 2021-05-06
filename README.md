@@ -1,5 +1,5 @@
 # BlogByDjango
-this is a blog API  by Django  and Djangorestframework
+this is a __blog API__  by __Django__  and __Djangorestframework__
 
 
 How to run the Project?
@@ -7,7 +7,7 @@ How to run the Project?
 - source .venv/bin/activate
 - pip install -r requierment.txt
 
-requirements:
+<h1>requirements:</h1>
 * Python
 * Django
 * Djangorestframework
