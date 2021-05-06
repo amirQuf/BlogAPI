@@ -6,6 +6,7 @@ How to run the Project?
 - python -m venv .venv 
 - source .venv/bin/activate
 - pip install -r requierment.txt
+- python manage.py runserver
 
 requirements:
 * Python
