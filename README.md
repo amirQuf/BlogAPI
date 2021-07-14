@@ -14,7 +14,7 @@ requirements:
 * Djangorestframework
 
 APPS:
-* sers:to handle some models that related to models
+* users:to handle some models that related to models
 * web:include models like Post ,Comment ,Category , Like , SavedPost
 * API: its handle rest frame work api 
 
