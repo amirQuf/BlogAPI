@@ -1,4 +1,4 @@
-from web.models import Post ,Category , SavePost ,Comment 
+from .models import Post ,Category , SavePost ,Comment 
 
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers

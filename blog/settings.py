@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     # appps
     'web.apps.WebConfig',
-    'Api.apps.ApiConfig',
     'users.apps.UsersConfig',
 ]
 
