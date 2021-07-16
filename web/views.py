@@ -4,8 +4,7 @@ from rest_framework import generics
 from .serializers import (PostSerializer,CategorySerializer 
 , savepostSerializer ) 
 from .models import Post ,Category ,SavePost 
-
-# from rest_framework.viewsets import  ViewSet
+from rest_framework.viewsets import  ViewSet
 
 
 # class PostViewSet(ViewSet):
