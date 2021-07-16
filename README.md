@@ -31,9 +31,8 @@ python3 manage.py runserver
 
 ### Todo:
 
-- [ ] adding fork ability for Blog
+- [ ] adding fork ability for Blogs
 - [ ] add OTP
 - [ ] adding .env file for settings
 - [ ] write beautiful front (maybe)
-- [ ] 
 
