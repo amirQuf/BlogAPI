@@ -1,23 +1,39 @@
-# BlogByDjango
-this is a __blog API__  by __Django__  and __Djangorestframework__
+# BlogAPI
+this is a __blog API__  using __Django__  and __Django rest framework__
 
+##### How to run the Project?
 
-How to run the Project?
-- python -m venv .venv 
-- source .venv/bin/activate
-- pip install -r requierment.txt
-- python manage.py runserver
+```bash
+python3 -m venv .venv 
+source .venv/bin/activate
+pip install -r requierment.txt
+python3 manage.py runserver
+```
 
-requirements:
+### requirements:
+
 * Python
 * Django
-* Djangorestframework
+* Django rest framework
 
-APPS:
-* users:to handle some models that related to models
-* web:include models like Post ,Comment ,Category , Like , SavedPost
-* API: its handle rest frame work api 
+## APPS:
 
-Models:
+* users : to handle some models that related to models
+
+* Web : include models like Post ,Comment ,Category , Like , SavedPost
+
+  
+
+## Models:
+
 * Post ,Comment ,Category , Like , SavedPost  in web APP
 * Profile  , Followers in users APP
+
+### Todo:
+
+- [ ] adding fork ability for Blog
+- [ ] add OTP
+- [ ] adding .env file for settings
+- [ ] write beautiful front (maybe)
+- [ ] 
+
