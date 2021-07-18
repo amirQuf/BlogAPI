@@ -33,7 +33,7 @@ python3 manage.py runserver
 
 - [ ] adding fork ability for Blogs
 - [ ] add OTP
-- [ ] adding .env file for settings
+- [-] adding .env file for settings
 - [ ] write beautiful front (maybe)
 - [ ] writing tests
 
