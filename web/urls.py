@@ -1,18 +1,11 @@
-from django.urls import path 
-
-from .views import (PostList ,PosDetail ,CatgoryList,savedPostList , 
-
+from django.urls import path
+from .views import (PostViewSet ,CatgoryViewSet 
 )
+from rest_framework.routers import SimpleRouter
+
+router = SimpleRouter()
+router.register('posts' , PostViewSet , basename = 'Posts')
+router.register('cats' , CatgoryViewSet , basename = 'Cats')
 
 
-
-
-app_name = "web"
-urlpatterns = [
-    path('post/',PostList.as_view(), name = 'PostListAPI'),
-    path('post/<int:pk>',PosDetail.as_view(), name = 'PosDetailAPI'),
-    path('cat/',CatgoryList.as_view(), name = 'catListAPI'),
-    path('savedpost/',savedPostList.as_view(), name = 'savedPostListAPI'),
-    
-]
-    
+urlpatterns = router.urls
