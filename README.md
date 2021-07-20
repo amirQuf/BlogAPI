@@ -36,4 +36,6 @@ python3 manage.py runserver
 - [x] ~~adding .env file for settings~~
 - [ ] write beautiful front (maybe)
 - [ ] writing tests
+- [x] removing api 
+- [ ] update readme
 
