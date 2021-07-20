@@ -16,7 +16,7 @@ class Profile (models.Model):
     phone  = models .CharField(max_length = 11, blank = True, null = True)
     bio  = models.CharField(max_length = 150, blank = True, null = True)
     location = models.CharField(max_length = 150, blank = True, null = True)
-    
+    is_vertified  = models.BooleanField(default=False ,blank = True, null = True)
     
     def __str__(self):
         return f"profile/{self.user.username}"
