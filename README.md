@@ -31,11 +31,11 @@ python3 manage.py runserver
 
 ### Todo:
 
-- [ ] adding fork ability for Blogs
+- [x] ~~adding fork ability for Blogs~~
 - [ ] add OTP
 - [x] ~~adding .env file for settings~~
 - [ ] write beautiful front (maybe)
 - [ ] writing tests
-- [x] removing api 
+- [x] ~~removing api ~~
 - [ ] update readme
 
