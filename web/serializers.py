@@ -3,6 +3,7 @@ from .models import Post ,Category , SavePost ,Comment
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from users.serialzers import UserSerializer
+
 class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
