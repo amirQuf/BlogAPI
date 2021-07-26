@@ -22,20 +22,24 @@ python3 manage.py runserver
 
 * Web : include models like Post ,Comment ,Category , Like , SavedPost
 
-  
 
 ## Models:
-
 * Post ,Comment ,Category , Like , SavedPost  in web APP
 * Profile  , Followers in users APP
 
-### Todo:
+## Requirements:
+- __Django__
+- __Django REST Frame work__ 
+- __kavenegarAPI__
+- __pyopt__
 
-- [x] ~~adding fork ability for Blogs~~
+
+### Todo:
+- [x] adding fork ability for Blogs
 - [ ] add OTP
-- [x] ~~adding .env file for settings~~
+- [x] adding .env file for settings
 - [ ] write beautiful front (maybe)
 - [ ] writing tests
-- [x] ~~removing api ~~
-- [ ] update readme
+- [x] removing api 
+- [x] update readme
 
