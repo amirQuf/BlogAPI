@@ -9,13 +9,6 @@ source .venv/bin/activate
 pip install -r requierment.txt
 python3 manage.py runserver
 ```
-
-### requirements:
-
-* Python
-* Django
-* Django rest framework
-
 ## APPS:
 
 * users : to handle some models that related to models
