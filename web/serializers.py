@@ -1,20 +1,22 @@
-from .models import Post ,Category , SavePost ,Comment 
+from rest_framework import serializers, ModelSerializer
 
-from rest_framework.serializers import ModelSerializer
-from rest_framework import serializers
 from users.serialzers import UserSerializer
 
-class CategorySerializer(ModelSerializer):
+from .models import Category, Comment, Post, SavePost
+
+
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ["name" ,"user" ,"slug","parent","description", "get_absolute_url"]
 
 
-class PostSerializer(ModelSerializer):
+class OutputPostSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(read_only = True , many = True)
     user  = UserSerializer(read_only = True)
     comments = serializers.StringRelatedField(many = True)
     like = serializers.StringRelatedField(many = True)
+    status = serializers.CharField(source="get_status_display")
     class Meta:
         model = Post
         fields = ["title" ,"thumbnail" ,"description" ,"user" ,
@@ -22,8 +24,18 @@ class PostSerializer(ModelSerializer):
             "status" ,"get_absolute_url" ,'comments',"like"]
 
 
-class CommentSerializer(ModelSerializer):
-    post  = PostSerializer(read_only = True)
+
+class InputPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ["title" ,"thumbnail" ,"description" ,"user" ,
+            "voice" ,"created", "categories" ,"likes", 
+            "status" ,"get_absolute_url" ,'comments',"like"]
+
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    post  = OutputPostSerializer(read_only = True)
     user  = UserSerializer(read_only = True)
     class Meta:
         model = Comment
@@ -31,11 +43,10 @@ class CommentSerializer(ModelSerializer):
 
 
 
-class savepostSerializer(ModelSerializer):
+class SavePostSerializer(serializers.ModelSerializer):
     
     user = UserSerializer(read_only = True)
-    saved_post =PostSerializer(read_only = True)
+    saved_post = OutputPostSerializer(read_only = True)
     class Meta:
         model = SavePost
         fields = ["user" , "saved_post", 'time' ]
-
