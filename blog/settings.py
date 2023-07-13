@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
+
     # appps
     'web.apps.WebConfig',
     'users.apps.UsersConfig',
@@ -49,8 +50,7 @@ INSTALLED_APPS = [
     # #OTP
     'django_otp',
     'django_otp.plugins.otp_totp',
-    'django_otp.plugins.otp_hotp',
-    'django_otp.plugins.otp_static',
+   
 ]
 
 MIDDLEWARE = [
@@ -146,3 +146,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ]
 }
+
+AUTHENTICATION_BACKENDS = 'django_otp.backends.ModelBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'your-email@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False

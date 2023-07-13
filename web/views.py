@@ -1,11 +1,6 @@
-from django.shortcuts import render
-   
-from .serializers import (OutputPostSerializer,InputPostSerializer,CategorySerializer 
-, savepostSerializer ) 
+from .serializers import (OutputPostSerializer,InputPostSerializer,CategorySerializer , SavePostSerializer ) 
 from .models import Post ,Category ,SavePost 
 from rest_framework.viewsets import  ModelViewSet
-
-
 
 
 class CatgoryViewSet(ModelViewSet):

@@ -1,35 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_otp.models import TimeStampedModel
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    ADMIN = 1
+    MEMBER = 2
+    parent = models.name = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.CASCADE
+    )
+    ROLES = (
+        (ADMIN, "Admin"),
+        (MEMBER, "member"),
+    )
+    email = models.EmailField(unique=True)
+    role = models.SmallIntegerField(choices=ROLES, default=MEMBER)
+    profile = models.ImageField(upload_to="user/profile")
+
+
+
+class OTPVerification(TimeStampedModel):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='otp_verification'
+    )
+    otp_secret_key = models.CharField(max_length=16)
+    is_verified = models.BooleanField(default=False)
 
 
 
 
-# class User(AbstractUser):
-#     phone  = models .CharField(max_length = 11)
-    
-
-
-
-class Profile (models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
-    picture = models.ImageField( default = 'default.jpg',upload_to = 'profile-users' )
-    phone  = models .CharField(max_length = 11, blank = True, null = True)
-    bio  = models.CharField(max_length = 150, blank = True, null = True)
-    location = models.CharField(max_length = 150, blank = True, null = True)
-    is_vertified  = models.BooleanField(default=False ,blank = True, null = True)
-    
-    def __str__(self):
-        return f"profile/{self.user.username}"
-
-
-class Follower(models.Model):
-    user = models.OneToOneField(User, related_name = 'user' , on_delete = models.CASCADE)
-    following = models.ManyToManyField(User,related_name = "followings" )
-   
-    def __str__(self):
-        return f"following list/{self.user.username}"
-
-
-# class Asosication(models.Model):
-#     name  = models.CharField(max_length=100)
-#     user =
