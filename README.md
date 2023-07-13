@@ -1,8 +1,5 @@
-Certainly! Here's an example of a README file for a Django project:
+# BlogAPI
 
-# Project Name
-
-Briefly describe your Django project here. Provide an overview of its purpose, features, and any unique aspects that make it stand out.
 
 ## Table of Contents
 
