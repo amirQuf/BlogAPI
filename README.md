@@ -11,14 +11,14 @@ python3 manage.py runserver
 ```
 ## APPS:
 
-* users : to handle some models that related to models
+* users: to handle some models that related to models
 
-* Web : include models like Post ,Comment ,Category , Like , SavedPost
+* Web: include models like Post, Comment, Category, Like, SavedPost
 
 
 ## Models:
-* Post ,Comment ,Category , Like , SavedPost  in web APP
-* Profile  , Followers in users APP
+* Post, Comment, Category, Like, SavedPost  in web APP
+* Profile, Followers in users APP
 
 ## Requirements:
 - __Django__
@@ -31,8 +31,9 @@ python3 manage.py runserver
 - [x] adding fork ability for Blogs
 - [ ] add OTP
 - [x] adding .env file for settings
-- [ ] write beautiful front (maybe)
+- [ ] Write  a beautiful front (maybe)
 - [ ] writing tests
+- [ ] add swagger
 - [x] removing api 
 - [x] update readme
 
