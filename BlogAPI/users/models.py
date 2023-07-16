@@ -7,9 +7,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     ADMIN = 1
     MEMBER = 2
-    parent = models.name = models.ForeignKey(
-        "self", null=True, blank=True, on_delete=models.CASCADE
-    )
     ROLES = (
         (ADMIN, "Admin"),
         (MEMBER, "member"),
