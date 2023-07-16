@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     # appps
-    'web.apps.WebConfig',
-    'users.apps.UsersConfig',
+    'BlogAPI.blog.apps.WebConfig',
+    'BlogAPI.users.apps.UsersConfig',
     
     # #OTP
     'django_otp',
