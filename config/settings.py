@@ -151,9 +151,9 @@ AUTHENTICATION_BACKENDS = 'django_otp.backends.ModelBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = config('smtp.gmail.com')
 # EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-email-password'
+# EMAIL_HOST_USER = config('your-email@gmail.com')
+# EMAIL_HOST_PASSWORD = config('your-email-password')
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
